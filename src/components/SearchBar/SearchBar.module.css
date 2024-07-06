@@ -2,8 +2,7 @@ Form {
   display: flex;
   gap: 16px;
   padding: 20px;
-  margin-bottom: 16px;
-  margin: 0 auto;
+  justify-content: center;
 }
 
 .input {

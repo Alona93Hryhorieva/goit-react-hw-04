@@ -11,9 +11,12 @@ export const fetchImages = async (searchQuery, currentPage) => {
     params: {
       query: searchQuery,
       page: currentPage,
-      per_page: 10,
+      per_page: 9,
     },
   });
 
-  return response.data.results;
+  return {
+    results: response.data.results,
+    total: response.data.total,
+  };
 };

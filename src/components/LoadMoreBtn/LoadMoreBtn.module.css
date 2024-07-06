@@ -1,0 +1,8 @@
+.loadMore {
+  background-color: rgba(230, 226, 226, 0.779);
+  border: 1px solid green;
+  border-radius: 5px;
+  width: 200px;
+  margin: 0 auto 20px auto;
+  display: block;
+}

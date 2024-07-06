@@ -1,6 +1,6 @@
 export default function ImageCard({
   imageItem: {
-    urls: { small, regular },
+    urls: { small },
     alt_description,
   },
 }) {
