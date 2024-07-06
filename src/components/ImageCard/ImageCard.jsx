@@ -1,7 +1,12 @@
-export default function ImageCard({ src, alt }) {
+export default function ImageCard({
+  imageItem: {
+    urls: { small, regular },
+    alt_description,
+  },
+}) {
   return (
     <div>
-      <img src={src} alt={alt} />
+      <img src={small} alt={alt_description} />
     </div>
   );
 }

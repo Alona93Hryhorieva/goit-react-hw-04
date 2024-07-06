@@ -1,0 +1,16 @@
+Form {
+  display: flex;
+  gap: 16px;
+  padding: 20px;
+  margin-bottom: 16px;
+  margin: 0 auto;
+}
+
+.input {
+  color: black;
+  background-color: rgba(230, 226, 226, 0.779);
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  width: 272px;
+}

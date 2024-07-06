@@ -1,6 +1,6 @@
 import toast, { Toaster } from "react-hot-toast";
 import { Formik, Form, Field } from "formik";
-// import css from "./SearchBar.module.css";
+import css from "./SearchBar.module.css";
 
 export default function SearchBar({ onSubmit }) {
   const handleSubmit = (values, { resetForm }) => {
@@ -14,6 +14,7 @@ export default function SearchBar({ onSubmit }) {
       <Formik initialValues={{ query: "" }} onSubmit={handleSubmit}>
         <Form>
           <Field
+            className={css.input}
             name="query"
             type="text"
             autoComplete="off"
