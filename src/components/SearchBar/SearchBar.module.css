@@ -1,8 +1,6 @@
 Form {
-  display: flex;
-  gap: 16px;
   padding: 20px;
-  justify-content: center;
+  text-align: center;
 }
 
 .input {
@@ -12,4 +10,10 @@ Form {
   border-radius: 5px;
   padding: 8px 16px;
   width: 272px;
+}
+
+header {
+  background-color: #094347;
+  height: 100%;
+  width: 100%;
 }

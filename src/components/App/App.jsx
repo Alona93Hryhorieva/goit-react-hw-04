@@ -136,7 +136,7 @@ export default function App() {
       {images.length > 0 && (
         <ImageGallery images={images} openModal={openModal} />
       )}
-      {totalImages > images.length && !loading && images.length > 0 && (
+      {totalImages && !loading && images.length > 0 && (
         <LoadMoreBtn onClick={handleLoadMore} />
       )}
       <ImageModal
