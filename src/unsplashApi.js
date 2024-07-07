@@ -17,6 +17,6 @@ export const fetchImages = async (searchQuery, currentPage) => {
 
   return {
     results: response.data.results,
-    total: response.data.total_pages,
+    total: response.data.total,
   };
 };

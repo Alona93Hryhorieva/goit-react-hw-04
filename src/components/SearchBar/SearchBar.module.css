@@ -1,12 +1,8 @@
-header {
-  background-color: #094347;
-  height: 100%;
-  width: 100%;
-}
-
 Form {
+  display: flex;
+  gap: 16px;
   padding: 20px;
-  text-align: center;
+  justify-content: center;
 }
 
 .input {
@@ -16,5 +12,4 @@ Form {
   border-radius: 5px;
   padding: 8px 16px;
   width: 272px;
-  margin-right: 15px;
 }

@@ -1,7 +1,7 @@
 import ImageCard from "../ImageCard/ImageCard";
 import css from "./ImageGallery.module.css";
 
-export default function ImageGallery({ images, openModal }) {
+export default function ImageGallery({ images }) {
   if (images.length === 0) {
     return null;
   }
@@ -10,7 +10,7 @@ export default function ImageGallery({ images, openModal }) {
     <ul className={css.list}>
       {images.map((image) => (
         <li key={image.id}>
-          <ImageCard imageItem={image} openModal={openModal} />
+          <ImageCard imageItem={image} />
         </li>
       ))}
     </ul>

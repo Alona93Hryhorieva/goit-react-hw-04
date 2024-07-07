@@ -17,7 +17,7 @@ export default function App() {
   const [error, setError] = useState(false);
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
-  const [totalImages, setTotalImages] = useState(0);
+  const [totalImages, setTotalImages] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedImageUrl, setSelectedImageUrl] = useState("");
 
@@ -93,9 +93,9 @@ export default function App() {
         const { results, total } = await fetchImages(query, page);
         setImages((prevImages) => [...prevImages, ...results]);
         setTotalImages(page < total);
-        if (images.length + results.length >= total) {
-          toast.error("There are no more images to upload");
-        }
+        // if (images.length + results.length >= total) {
+        //   toast.error("There are no more images to upload");
+        // }
       } catch (error) {
         setError(true);
         toast.error("Error loading images");
