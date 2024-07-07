@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { fetchImages } from "../../unsplashApi";
-// import "./App.css";
+import css from "./App.module.css";
 import SearchBar from "../SearchBar/SearchBar";
 import ImageGallery from "../ImageGallery/ImageGallery";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
@@ -17,7 +17,7 @@ export default function App() {
   const [error, setError] = useState(false);
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
-  const [totalImages, setTotalImages] = useState(0);
+  const [totalImages, setTotalImages] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedImageUrl, setSelectedImageUrl] = useState("");
 
@@ -66,6 +66,7 @@ export default function App() {
   const handleLoadMore = () => {
     setPage((prevPage) => prevPage + 1);
     toast.error("Error loading additional images");
+    setTotalImages(page < total);
   };
   //   const handleLoadMore = async () => {
   //     try {
@@ -135,7 +136,7 @@ export default function App() {
       {images.length > 0 && (
         <ImageGallery images={images} openModal={openModal} />
       )}
-      {images.length > 0 && images.length < totalImages && !loading && (
+      {totalImages && !loading && images.length > 0 && (
         <LoadMoreBtn onClick={handleLoadMore} />
       )}
       <ImageModal
