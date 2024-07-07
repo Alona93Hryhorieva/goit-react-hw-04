@@ -36,7 +36,7 @@ export default function ImageModal({ isOpen, closeModal, imageUrl }) {
           height: "100%",
           cursor: "pointer",
         }}
-        onClick={handleCloseModal} // Клік на бекдропі закриває модалку
+        // onClick={handleCloseModal} // Клік на бекдропі закриває модалку
       >
         <img
           src={imageUrl}

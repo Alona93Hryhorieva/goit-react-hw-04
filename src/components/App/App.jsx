@@ -83,7 +83,6 @@ export default function App() {
     if (query === "") {
       return;
     }
-
     async function getImages() {
       try {
         setLoading(true);
@@ -91,6 +90,9 @@ export default function App() {
         const { results, total } = await fetchImages(query, page);
         setImages((prevImages) => [...prevImages, ...results]);
         setTotalImages(page < total);
+        if (page === total) {
+          return toast.error("Закінчились картинки");
+        }
       } catch (error) {
         setError(true);
         toast.error("Error loading images");
