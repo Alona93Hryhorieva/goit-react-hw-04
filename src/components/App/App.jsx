@@ -17,7 +17,7 @@ export default function App() {
   const [error, setError] = useState(false);
   const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
-  const [totalImages, setTotalImages] = useState(false);
+  const [totalImages, setTotalImages] = useState(0);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [selectedImageUrl, setSelectedImageUrl] = useState("");
 
@@ -66,7 +66,7 @@ export default function App() {
   const handleLoadMore = () => {
     setPage((prevPage) => prevPage + 1);
     toast.error("Error loading additional images");
-    setTotalImages(page < total);
+    // setTotalImages(page < total);
   };
   //   const handleLoadMore = async () => {
   //     try {
@@ -92,8 +92,8 @@ export default function App() {
         setError(false);
         const { results, total } = await fetchImages(query, page);
         setImages((prevImages) => [...prevImages, ...results]);
-        setTotalImages(total);
-        if (images.length >= total) {
+        setTotalImages(page < total);
+        if (images.length + results.length >= total) {
           toast.error("There are no more images to upload");
         }
       } catch (error) {
@@ -136,7 +136,7 @@ export default function App() {
       {images.length > 0 && (
         <ImageGallery images={images} openModal={openModal} />
       )}
-      {totalImages && !loading && images.length > 0 && (
+      {totalImages > images.length && !loading && images.length > 0 && (
         <LoadMoreBtn onClick={handleLoadMore} />
       )}
       <ImageModal
