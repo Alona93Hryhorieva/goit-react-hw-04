@@ -3,6 +3,7 @@ export default function ImageCard({
     urls: { small, regular },
     alt_description,
   },
+  openModal,
 }) {
   return (
     <div>

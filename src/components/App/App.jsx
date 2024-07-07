@@ -19,7 +19,7 @@ export default function App() {
   const [page, setPage] = useState(1);
   const [totalImages, setTotalImages] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [selectedImageUrl, setSelectedImageUrl] = useState("");
+  const [selectedImage, setSelectedImage] = useState(null);
 
   //   useEffect(() => {
   //     async function getImages() {
@@ -65,8 +65,6 @@ export default function App() {
 
   const handleLoadMore = () => {
     setPage((prevPage) => prevPage + 1);
-    toast.error("Error loading additional images");
-    // setTotalImages(page < total);
   };
   //   const handleLoadMore = async () => {
   //     try {
@@ -93,9 +91,6 @@ export default function App() {
         const { results, total } = await fetchImages(query, page);
         setImages((prevImages) => [...prevImages, ...results]);
         setTotalImages(page < total);
-        // if (images.length + results.length >= total) {
-        //   toast.error("There are no more images to upload");
-        // }
       } catch (error) {
         setError(true);
         toast.error("Error loading images");
@@ -105,6 +100,12 @@ export default function App() {
     }
     getImages();
   }, [query, page]);
+
+  useEffect(() => {
+    if (images.length === totalImages && totalImages !== 0) {
+      toast.error("Всі доступні зображення вже завантажено");
+    }
+  }, [images, totalImages]);
   //     async function getImages() {
   //       try {
   //         setLoading(true);
@@ -121,12 +122,13 @@ export default function App() {
   //   }, [query, page]);
 
   const openModal = (imageUrl) => {
-    setSelectedImageUrl(imageUrl);
+    setSelectedImage(imageUrl);
     setModalIsOpen(true);
   };
 
   const closeModal = () => {
     setModalIsOpen(false);
+    setSelectedImage(null);
   };
 
   return (
@@ -137,11 +139,13 @@ export default function App() {
         <ImageGallery images={images} openModal={openModal} />
       )}
       {totalImages && !loading && images.length > 0 && (
-        <LoadMoreBtn onClick={handleLoadMore} />
+        <LoadMoreBtn onClick={handleLoadMore}>
+          {/* <p>Всі доступні зображення завантажено.</p> */}
+        </LoadMoreBtn>
       )}
       <ImageModal
         isOpen={modalIsOpen}
-        imageUrl={selectedImageUrl}
+        imageUrl={selectedImage}
         closeModal={closeModal}
       />
       <Toaster position="top-сenter" reverseOrder={false} />
