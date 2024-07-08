@@ -10,6 +10,7 @@ Form {
   border-radius: 5px;
   padding: 8px 16px;
   width: 272px;
+  margin-right: 10px;
 }
 
 header {

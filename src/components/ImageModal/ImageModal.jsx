@@ -1,11 +1,6 @@
 import Modal from "react-modal";
 
 export default function ImageModal({ isOpen, closeModal, imageUrl }) {
-  const handleCloseModal = () => {
-    console.log("Закриття модалки");
-    closeModal();
-  };
-
   return (
     <Modal
       isOpen={isOpen}
@@ -30,20 +25,13 @@ export default function ImageModal({ isOpen, closeModal, imageUrl }) {
         },
       }}
     >
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          cursor: "pointer",
-        }}
-        // onClick={handleCloseModal} // Клік на бекдропі закриває модалку
-      >
+      <>
         <img
           src={imageUrl}
           alt="Selected"
-          style={{ maxWidth: "100%", maxHeight: "100%" }}
+          style={{ maxWidth: "75%", maxHeight: "75%" }}
         />
-      </div>
+      </>
     </Modal>
   );
 }

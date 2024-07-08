@@ -88,10 +88,15 @@ export default function App() {
         setLoading(true);
         setError(false);
         const { results, total } = await fetchImages(query, page);
+        if (results.length === 0) {
+          toast.error("No images found for your request");
+          setTotalImages(false);
+          return;
+        }
         setImages((prevImages) => [...prevImages, ...results]);
         setTotalImages(page < total);
         if (page === total) {
-          return toast.error("Закінчились картинки");
+          return toast.error("All available images have already been uploaded");
         }
       } catch (error) {
         setError(true);
@@ -103,11 +108,6 @@ export default function App() {
     getImages();
   }, [query, page]);
 
-  useEffect(() => {
-    if (images.length === totalImages && totalImages !== 0) {
-      toast.error("Всі доступні зображення вже завантажено");
-    }
-  }, [images, totalImages]);
   //     async function getImages() {
   //       try {
   //         setLoading(true);
@@ -141,16 +141,20 @@ export default function App() {
         <ImageGallery images={images} openModal={openModal} />
       )}
       {totalImages && !loading && images.length > 0 && (
-        <LoadMoreBtn onClick={handleLoadMore}>
-          {/* <p>Всі доступні зображення завантажено.</p> */}
-        </LoadMoreBtn>
+        <LoadMoreBtn onClick={handleLoadMore}></LoadMoreBtn>
       )}
       <ImageModal
         isOpen={modalIsOpen}
         imageUrl={selectedImage}
         closeModal={closeModal}
       />
-      <Toaster position="top-сenter" reverseOrder={false} />
+      <Toaster
+        position="top-сenter"
+        reverseOrder={false}
+        toastOptions={{
+          className: "toast-container",
+        }}
+      />
       {error && <ErrorMessage />}
     </div>
   );
